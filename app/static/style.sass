@@ -1,0 +1,71 @@
+
+@font-face
+	font-family: "BebasNeue"
+	src: url('BebasNeue.oft') format('opentype')
+	src: url('BebasNeue.svg#BebasNeue') format('svg')
+	src: url('BebasNeue.ttf') format('truetype')
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700)
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,500,700)
+
+$title-font: 	'Roboto', sans-serif
+$body-font:		'Open Sans', sans-serif
+
+// Colors
+$green:			#588C7E
+$yellow:		#F2E394
+$orange:		#F2AE72
+$red:			#D96459
+$red-dark:		#8C4646
+$cyan:			#00bcd4
+
+$primary-color:	$orange
+$accent-color:	#ffea00
+$white:			#FFF
+$text: 			rgb(0, 68, 70)
+
+html
+	height:				100%
+
+body
+	color:				$text
+	background-color:	$primary-color
+	font: 				14px/1 'Open Sans', sans-serif
+	height:				100%
+
+.title-wrapper
+	height:				300px
+	background-color:	$orange
+	margin-top:			0
+	padding-top:		80px
+
+.title
+	color:				$text
+	font-family:		'BebasNeue', sans-serif
+	font-size:			96px
+	font-weight:		300
+	margin-top:			0
+	
+.subtitle
+	@extend .title
+	font-size:			45px
+	
+.entry
+	padding:	8px
+	
+.headers
+	@extend .entry
+	margin-bottom:		-8px
+	
+.headlines
+	background-color:	$white
+	box-shadow: 		0 4px 8px 0 rgba(0, 0, 0, 0.2)
+	padding:			24px
+	margin-bottom:		48px
+	
+.placeholder
+	@extend .subtitle
+	font-family:		'Roboto', sans-serif
+	font-size:			24px
+	font-weight:		300
+	margin:				0

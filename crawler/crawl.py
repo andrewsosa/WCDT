@@ -31,24 +31,22 @@ def extract_entities(sample):
 
         entity_names.extend(extract_entity_names(tree))
 
-    # Print all entity names
-    #print entity_names
-
     # Print unique entity names
     return set(entity_names)
 
 def detect(headline):
-    f = file("first.txt", "r")
-    l = file("last.txt", "r")
-
-    firsts = f.read().split()
-    lasts = l.read().split()
-
-    f.close()
-    l.close()
 
     # Check with NLTK
     entities = extract_entities(headline)
+
+    # Generate Extra Options from Entities
+    ents = [e.split() for e in list(entities)]
+    ents = [[x[i:i+2] for i in range(len(x)-1)] for x in ents]
+    ents = [[' '.join(x) for x in y] for y in ents]
+
+    entities = set([item for sublist in ents for item in sublist])
+
+    #print ents
 
     # Check with name list
     #for e in list(entities):
@@ -64,35 +62,52 @@ def detect(headline):
 
             flag = True
             for c in cats:
-                if "deaths" in c or "births" in c:
+                if "deaths" in c.lower() or "births" in c.lower():
                     flag = False
                     break
             if flag:
-                #print "REJECTED", e
+                #print "REJECTED (MISSING CATEGORY)", e
                 entities.discard(e)
 
         except:
-            #print "REJECTED", e
+            #print "REJECTED (PAGE NOT FOUND)", e
             entities.discard(e)
     return entities
+
+def process(t):
+
+    if not any(ext in t.lower() for ext in ["dead", "passed away", "died", "rip", "r.i.p."]):
+        return
+
+    print "Processing: " + t
+    names = list(detect(t))
+    for name in names:
+        #print t, s
+        try:
+            hd = Headline(text=t, person=name)
+            hd.save()
+        except Exception as e:
+            print "ERROR", e
+        #if any(ext in t.lower() for ext in ["dead", "passed away", "died", "rip", "r.i.p."]):
+        #    print  "dead"
 
 
 def main():
     user_agent = "A headline crawler by /u/jezusosaku"
     r = praw.Reddit(user_agent=user_agent)
     #headlines = r.get_front_page()
+    subreddits = ["news", "worldnews", "all"]
     headlines = r.get_subreddit("news").get_hot()
-    for t in [x.title for x in headlines]:
-        s = detect(t)
-        if len(s) == 1:
-            print t, s
 
-            hd = Headline(text=t, person=s.pop())
-            hd.save()
-
-            #if any(ext in t.lower() for ext in ["dead", "passed away", "died", "rip", "r.i.p."]):
-            #    print  "dead"
-
+    for sub in subreddits:
+        headlines = r.get_subreddit(sub).get_hot()
+        for t in [x.title for x in headlines]:
+            process(t)
 
 if __name__ == "__main__":
-    main()
+    #main()
+    x = "Erik Bauersfeld, voice of Admiral Ackbar, has died at 93"
+    process(x)
+
+    #x = "Jackie Chan, Pedro Almodovar among celebrities implicated by Panama Papers"
+    #print detect(x)

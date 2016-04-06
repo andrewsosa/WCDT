@@ -1,8 +1,50 @@
-<html>
-  <head>
-    <title>{{ title }} - microblog</title>
-  </head>
-  <body>
-      <h1>Hello, {{ user.nickname }}!</h1>
-  </body>
-</html>
+{% extends "bootstrap/base.html" %}
+{% block title %}Celebrity Death Counter{% endblock %}
+
+{% block styles %}
+  {{super()}}
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+{% endblock %}
+
+{% block content %}
+
+  {% if days_since %}
+    <div class="title-wrapper">
+      <h1 class="title text-center">{{ days_since }} days</h1>
+      <h2 class="subtitle text-center">since last celebrity death</h2>
+    </div>
+  {% endif %}
+
+
+  <div class="container">
+    <div class="headlines">
+
+    {% if headlines | length > 0 %}
+
+      <div class="row headers">
+        <div class="col-sm-2"><b>Date</b></div>
+        <div class="col-sm-2"><b>Person</b></div>
+        <div class="col-sm-8"><b>Headline</b></div>
+      </div>
+      <hr>
+
+      {% for headline in headlines %}
+        <div class="row entry">
+          <div class="col-sm-2"><b>{{ headline.created_at|datetime}}</b></div>
+          <div class="col-sm-2"><b>{{ headline.person }}</b></div>
+          <div class="col-sm-8">{{ headline.text }}</div>
+        </div>
+      {% endfor %}
+
+      {% else %}
+
+        <div>
+          <h3 class="placeholder text-center">No recorded death.</h3>
+        </div>
+
+    {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
