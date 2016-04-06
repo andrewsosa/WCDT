@@ -105,9 +105,5 @@ def main():
             process(t)
 
 if __name__ == "__main__":
-    #main()
-    x = "Erik Bauersfeld, voice of Admiral Ackbar, has died at 93"
-    process(x)
-
-    #x = "Jackie Chan, Pedro Almodovar among celebrities implicated by Panama Papers"
-    #print detect(x)
+    main()
+    
