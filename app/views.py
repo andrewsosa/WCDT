@@ -16,3 +16,7 @@ def index():
 @app.template_filter('datetime')
 def my_custom_format(value, format='MMMM d yyyy'):
     return format_datetime(value, format)
+
+@app.route("/test")
+def test():
+    return "<h1 style='color:blue'>Hello There!</h1>"
