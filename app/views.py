@@ -4,7 +4,7 @@ from app.models import *
 from babel.dates import format_datetime
 
 @app.route('/')
-@app.route('/deadpeople')
+@app.route('/index')
 def index():
     headlines = Headline.objects.order_by('created_at')
     most_recent = headlines[0]
