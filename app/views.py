@@ -1,20 +1,23 @@
 from flask import render_template
 from app import app
 from app.models import *
+import datetime
 from babel.dates import format_datetime
 
 @app.route('/')
 @app.route('/index')
 def index():
+    headlines = Headline.objects.order_by('created_at')
+    most_recent = headlines[0]
+    days_since = 0
     try:
-        headlines = Headline.objects.order_by('created_at')
-        most_recent = headlines[0]
         days_since = (datetime.datetime.now().date() - most_recent.created_at.date()).days
-        return render_template('index.html',
-                            days_since=str(days_since),
-                            headlines=headlines)
-    except Exception as e:
-        return str(e)
+    except:
+        days_since = 0
+    return render_template('index.html',
+                        days_since=str(days_since),
+                        headlines=headlines)
+
 
 
 @app.template_filter('datetime')
