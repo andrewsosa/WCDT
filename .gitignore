@@ -1,3 +1,7 @@
 *.pyc
 flask
 nltk_data
+
+app/views.pyc
+app/__init__.pyc
+app/models.pyc
