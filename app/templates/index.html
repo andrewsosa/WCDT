@@ -30,7 +30,7 @@
 
       {% for headline in headlines %}
         <div class="row entry">
-          <div class="col-sm-2"><b>{{ headline.created_at|datetime}}</b></div>
+          <div class="col-sm-2"><b>{{ headline.created_at.strftime('%Y-%m-%d') }}</b></div>
           <div class="col-sm-2"><b>{{ headline.person }}</b></div>
           <div class="col-sm-8">{{ headline.text }}</div>
         </div>

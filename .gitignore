@@ -5,3 +5,5 @@ nltk_data
 app/views.pyc
 app/__init__.pyc
 app/models.pyc
+
+wcdt.ini
