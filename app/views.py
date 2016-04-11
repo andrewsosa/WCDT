@@ -1,7 +1,6 @@
-from flask import render_template
-from app import app
+from flask import render_template, request
+from app import app, db, basic_auth
 from app.models import *
-from app import db
 import datetime
 
 
@@ -9,7 +8,7 @@ import datetime
 @app.route('/index')
 def index():
     try:
-        headlines = Headline.objects.order_by('created_at')
+        headlines = Headline.objects.order_by('-created_at')
         most_recent = headlines[0]
         days_since = (datetime.datetime.now().date() - most_recent.created_at.date()).days
 
@@ -18,3 +17,15 @@ def index():
                             person=str(most_recent.person))
     except Exception as e:
         return e
+
+@app.route('/recv', methods = ['POST'])
+@basic_auth.required
+def recv():
+    try:
+        person = str(request.form['person'])
+        text   = str(request.form['headline'])
+        headline = Headline(text=text, person=person)
+        headline.save()
+        return str(headline)
+    except Exception as e:
+        return str(e)
