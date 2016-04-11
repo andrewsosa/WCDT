@@ -7,3 +7,8 @@ app/__init__.pyc
 app/models.pyc
 
 wcdt.ini
+
+start.sh
+update.sh
+
+app/static/.sass-cache/

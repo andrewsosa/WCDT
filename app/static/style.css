@@ -10,25 +10,30 @@ html {
 
 body {
   color: #004446;
-  background-color: #F2AE72;
+  background-color: #FFF;
   font: 14px/1 "Open Sans", sans-serif;
-  height: 100%; }
+  height: 100%;
+  position: relative; }
 
 .title-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 300px;
-  background-color: #F2AE72;
   margin-top: 0;
   padding-top: 80px; }
 
 .title, .subtitle, .placeholder {
   color: #004446;
-  font-family: "BebasNeue", sans-serif;
-  font-size: 96px;
+  font-family: "Roboto", sans-serif;
+  font-size: 42px;
   font-weight: 300;
   margin-top: 0; }
 
 .subtitle, .placeholder {
-  font-size: 45px; }
+  font-size: 32px;
+  margin-top: 16px; }
 
 .entry, .headers {
   padding: 8px; }

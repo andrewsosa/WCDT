@@ -11,10 +11,16 @@
   {% if days_since %}
     <div class="title-wrapper">
       <h1 class="title text-center">{{ days_since }} days</h1>
-      <h2 class="subtitle text-center">since last celebrity death</h2>
+
+      {% if person %}
+      <h2 class="subtitle text-center">since the death of</h2>
+      <h2 class="name text-center">{{ person }} </h2>
+      {% endif %}
+
     </div>
   {% endif %}
 
+<!-- Headlines Section
 
   <div class="container">
     <div class="headlines">
@@ -46,5 +52,7 @@
 
     </div>
   </div>
+
+-->
 
 {% endblock %}
