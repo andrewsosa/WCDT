@@ -1,19 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,500,700);
-@font-face {
-  font-family: "BebasNeue";
-  src: url("BebasNeue.oft") format("opentype");
-  src: url("BebasNeue.svg#BebasNeue") format("svg");
-  src: url("BebasNeue.ttf") format("truetype"); }
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 html {
   height: 100%; }
 
 body {
   color: #004446;
   background-color: #FFF;
-  font: 14px/1 "Open Sans", sans-serif;
+  font: 18px/1 "Open Sans", sans-serif;
   height: 100%;
   position: relative; }
+
+.pages {
+  line-height: 150%; }
+
+.pages h3 {
+  margin-top: 48px;
+  margin-bottom: 24px; }
 
 .title-wrapper {
   position: absolute;
@@ -35,22 +38,21 @@ body {
   font-size: 32px;
   margin-top: 16px; }
 
-.entry, .headers {
-  padding: 8px; }
-
-.headers {
-  margin-bottom: -8px; }
-
-.headlines {
-  background-color: #FFF;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 24px;
-  margin-bottom: 48px; }
-
 .placeholder {
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 300;
   margin: 0; }
+
+.navbar-default {
+  background-color: #FFF;
+  font-family: "Montserrat", sans-serif; }
+
+.navbar-brand {
+  font-family: "Montserrat", sans-serif; }
+
+@media (min-width: 768px) {
+  .nav {
+    float: right !important; } }
 
 /*# sourceMappingURL=style.css.map */

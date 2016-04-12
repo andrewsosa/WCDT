@@ -1,10 +1,5 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% block title %}Celebrity Death Counter{% endblock %}
-
-{% block styles %}
-  {{super()}}
-  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-{% endblock %}
 
 {% block content %}
 
@@ -19,40 +14,5 @@
 
     </div>
   {% endif %}
-
-<!-- Headlines Section
-
-  <div class="container">
-    <div class="headlines">
-
-    {% if headlines | length > 0 %}
-
-      <div class="row headers">
-        <div class="col-sm-2"><b>Date</b></div>
-        <div class="col-sm-2"><b>Person</b></div>
-        <div class="col-sm-8"><b>Headline</b></div>
-      </div>
-      <hr>
-
-      {% for headline in headlines %}
-        <div class="row entry">
-          <div class="col-sm-2"><b>{{ headline.created_at.strftime('%Y-%m-%d') }}</b></div>
-          <div class="col-sm-2"><b>{{ headline.person }}</b></div>
-          <div class="col-sm-8">{{ headline.text }}</div>
-        </div>
-      {% endfor %}
-
-      {% else %}
-
-        <div>
-          <h3 class="placeholder text-center">No recorded death.</h3>
-        </div>
-
-    {% endif %}
-
-    </div>
-  </div>
-
--->
 
 {% endblock %}

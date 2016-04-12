@@ -1,8 +1,35 @@
-from flask import render_template, request
-from app import app, db, basic_auth
-from app.models import *
-import datetime
+from __future__ import print_function # In python 2.7
 
+from flask import render_template, request
+from flask_nav import Nav
+from flask_nav.elements import *
+
+from app import app, db, basic_auth, pages
+from app.models import *
+
+import datetime, sys
+
+
+#
+#   Navbar
+#
+
+nav = Nav()
+
+@nav.navigation()
+def mynavbar():
+    return Navbar(
+        'Celebrity Death Clock',
+        View('Home', 'index'),
+        View('About', 'page', path="about")
+    )
+
+nav.init_app(app)
+
+
+#
+#   App Routes
+#
 
 @app.route('/')
 @app.route('/index')
@@ -39,3 +66,10 @@ def recv():
         return str(headline)
     except Exception as e:
         return str(e)
+
+#@app.route('/about', strict_slashes=False)
+@app.route('/<path:path>/')
+def page(path):
+    print("HELLO\t" + path, file=sys.stderr)
+    page = pages.get_or_404(path)
+    return render_template('page.html', page=page)

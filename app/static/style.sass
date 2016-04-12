@@ -1,15 +1,10 @@
-
-@font-face
-	font-family: "BebasNeue"
-	src: url('BebasNeue.oft') format('opentype')
-	src: url('BebasNeue.svg#BebasNeue') format('svg')
-	src: url('BebasNeue.ttf') format('truetype')
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700)
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,500,700)
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700)
 
 $title-font: 	'Roboto', sans-serif
 $body-font:		'Open Sans', sans-serif
+$brand-font:	'Montserrat', sans-serif
 
 // Colors
 $green:			#588C7E
@@ -30,6 +25,7 @@ $text: 			rgb(0, 68, 70)
 	left: 50%
 	transform: translate(-50%, -50%)
 
+// HTML Element Tags
 
 html
 	height:				100%
@@ -37,9 +33,20 @@ html
 body
 	color:				$text
 	background-color:	$white
-	font: 				14px/1 'Open Sans', sans-serif
+	font: 				18px/1 $body-font
 	height:				100%
 	position: 			relative
+
+// FlatPages stylings
+
+.pages
+	line-height: 		150%
+
+.pages h3
+	margin-top:			48px
+	margin-bottom: 		24px
+
+// Specific Classes
 
 .title-wrapper
 	@include 			centerer
@@ -59,22 +66,20 @@ body
 	font-size:			32px
 	margin-top:			16px
 
-.entry
-	padding:	8px
-
-.headers
-	@extend .entry
-	margin-bottom:		-8px
-
-.headlines
-	background-color:	$white
-	box-shadow: 		0 4px 8px 0 rgba(0, 0, 0, 0.2)
-	padding:			24px
-	margin-bottom:		48px
-
 .placeholder
 	@extend .subtitle
 	font-family:		'Roboto', sans-serif
 	font-size:			24px
 	font-weight:		300
 	margin:				0
+
+.navbar-default
+	background-color: 	$white
+	font-family:		$brand-font
+
+.navbar-brand
+	font-family: $brand-font
+
+@media (min-width: 768px)
+	.nav
+		float: right !important
