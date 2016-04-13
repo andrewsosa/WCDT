@@ -61,8 +61,8 @@ def recv():
     try:
         person = str(request.form['person'])
         url = str(request.form['url'])
-        created_at = str(request.form['created_at'])
-        headline = Headline(url=url, person=person, created_at=created_at)
+        #created_at = str(request.form['created_at'])
+        headline = Headline(url=url, person=person)
         headline.save()
         return str(headline)
     except Exception as e:
