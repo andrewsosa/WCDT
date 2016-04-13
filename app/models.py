@@ -1,4 +1,4 @@
-import datetime
+import datetime, json
 from flask import url_for
 from app import db
 
@@ -9,7 +9,7 @@ class Headline(db.Document):
 
 
     def __unicode__(self):
-        return self.person
+        return str(self.to_json())
 
     meta = {
         'ordering': ['-created_at']

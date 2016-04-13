@@ -7,7 +7,7 @@ from flask_nav.elements import *
 from app import app, db, basic_auth, pages
 from app.models import *
 
-import datetime, sys
+import datetime, sys, json
 
 
 #
@@ -60,12 +60,31 @@ def index():
 def recv():
     try:
         person = str(request.form['person'])
-        url   = str(request.form['url'])
-        headline = Headline(url=url, person=person)
+        url = str(request.form['url'])
+        created_at = str(request.form['created_at'])
+        headline = Headline(url=url, person=person, created_at=created_at)
         headline.save()
         return str(headline)
     except Exception as e:
         return str(e)
+
+@app.route('/recv/<name>', methods = ['GET', 'PATCH'])
+@basic_auth.required
+def get(name):
+    if request.method == 'GET':
+        try:
+            headlines = Headline.objects(person=name)
+            return str(headlines)
+        except Exception as e:
+            return str(e)
+    elif request.method == 'PATCH':
+        try:
+            headline = list(Headline.objects(person=name))[0]
+            headline.created_at = str(request.form['created_at'])
+            headline.save()
+            return str(headline)
+        except Exception as e:
+            return str(e)
 
 #@app.route('/about', strict_slashes=False)
 @app.route('/<path:path>/')
