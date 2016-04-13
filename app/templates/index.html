@@ -5,11 +5,16 @@
 
   {% if days_since %}
     <div class="title-wrapper">
-      <h1 class="title text-center">{{ days_since }} days</h1>
+
+      {% if days_since == 1}
+        <h1 class="title text-center">{{ days_since }} day</h1>
+      {% else %}
+        <h1 class="title text-center">{{ days_since }} days</h1>
+      {% endif %}
 
       {% if person %}
-      <h2 class="subtitle text-center">since the death of</h2>
-      <h2 class="name text-center">{{ person }} </h2>
+        <h2 class="subtitle text-center">since the death of</h2>
+        <h2 class="name text-center">{{ person }} </h2>
       {% endif %}
 
     </div>
